@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eyad Shawky — Portfolio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config={theme:{extend:{colors:{sand:'#E8DCCB',sage:'#A3B18A',cream:'#FAF7F2',terra:'#C97C5D',pink:'#D8A7B1',charcoal:'#2B2B2B',sandLight:'#F0E8DA',sageDark:'#8A9E6F'},fontFamily:{serif:['Cormorant Garamond','Georgia','serif'],sans:['Inter','system-ui','sans-serif']}}}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#FAF7F2;color:#2B2B2B;overflow-x:hidden}
+::selection{background:#C97C5D;color:#FAF7F2}
+#preloader{position:fixed;inset:0;z-index:9999;background:#FAF7F2;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s ease}
+#preloader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-text{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:600;color:#2B2B2B;overflow:hidden}
+.loader-text span{display:inline-block;transform:translateY(110%);animation:loaderReveal .5s ease forwards}
+@keyframes loaderReveal{to{transform:translateY(0)}}
+.loader-bar{width:120px;height:2px;background:#E8DCCB;border-radius:2px;margin-top:1.5rem;overflow:hidden}
+.loader-bar-inner{height:100%;background:#C97C5D;border-radius:2px;animation:loaderFill 1.8s ease forwards}
+@keyframes loaderFill{from{width:0}to{width:100%}}
+.cursor-dot{position:fixed;width:6px;height:6px;background:#C97C5D;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(201,124,93,.35);border-radius:50%;pointer-events:none;z-index:9997;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s}
+.cursor-dot.hovering{width:12px;height:12px;background:#A3B18A}
+.cursor-ring.hovering{width:50px;height:50px;border-color:rgba(163,177,138,.4)}
+@media(max-width:768px){.cursor-dot,.cursor-ring{display:none!important}}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+.hero-breathe{animation:breathe 4s ease-in-out infinite}
+@keyframes kenBurns{0%{transform:scale(1) translate(0,0)}50%{transform:scale(1.08) translate(-1%,-1%)}100%{transform:scale(1) translate(0,0)}}
+.ken-burns{animation:kenBurns 20s ease-in-out infinite}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{opacity:0;animation:fadeUp .6s ease forwards}
+.fd1{animation-delay:.1s}.fd2{animation-delay:.2s}.fd3{animation-delay:.3s}.fd4{animation-delay:.4s}.fd5{animation-delay:.5s}.fd6{animation-delay:.6s}.fd7{animation-delay:.7s}.fd8{animation-delay:.8s}
+@keyframes sunbeam{0%,100%{opacity:.03;transform:rotate(-5deg) scaleX(1)}50%{opacity:.07;transform:rotate(-3deg) scaleX(1.05)}}
+.sunbeam{animation:sunbeam 8s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.float{animation:float 6s ease-in-out infinite}
+@keyframes plantSway{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+.plant-sway{animation:plantSway 5s ease-in-out infinite;transform-origin:bottom center}
+@keyframes pulse-ring{0%{transform:scale(1);opacity:.4}100%{transform:scale(1.8);opacity:0}}
+.pulse-ring{animation:pulse-ring 2.5s ease-out infinite}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes slideOut{from{transform:translateX(0);opacity:1}to{transform:translateX(100%);opacity:0}}
+.toast-in{animation:slideIn .4s ease forwards}
+.toast-out{animation:slideOut .4s ease forwards}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.marquee{animation:marquee 30s linear infinite}
+@keyframes rotateSlow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.rotate-slow{animation:rotateSlow 20s linear infinite}
+.card-lift{transition:transform .4s ease,box-shadow .4s ease}
+.card-lift:hover{transform:translateY(-6px);box-shadow:0 20px 50px -12px rgba(43,43,43,.1)}
+.btn-glow{position:relative;overflow:hidden;transition:all .3s ease}
+.btn-glow::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,124,93,.15),transparent);opacity:0;transition:opacity .3s ease}
+.btn-glow:hover::after{opacity:1}
+.btn-glow:hover{box-shadow:0 0 25px rgba(201,124,93,.25)}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.skill-card .skill-icon{transition:transform .3s ease,color .3s ease}
+.skill-card:hover .skill-icon{transform:scale(1.15);color:#C97C5D}
+.form-input{background:rgba(232,220,203,.3);border:1px solid rgba(232,220,203,.6);transition:all .3s ease}
+.form-input:focus{outline:none;border-color:#C97C5D;background:rgba(250,247,242,.8);box-shadow:0 0 0 3px rgba(201,124,93,.1)}
+.nav-glass{background:rgba(250,247,242,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nav-link{position:relative}
+.nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:#C97C5D;transition:width .3s ease}
+.nav-link.active::after{width:100%}
+.timeline-line{background:linear-gradient(to bottom,transparent,#A3B18A,#C97C5D,#A3B18A,transparent)}
+.texture-overlay{background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px 256px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#FAF7F2}::-webkit-scrollbar-thumb{background:#E8DCCB;border-radius:3px}::-webkit-scrollbar-thumb:hover{background:#C97C5D}
+#projectModal{transition:opacity .3s ease,visibility .3s ease}
+#projectModal.hidden{opacity:0;visibility:hidden;pointer-events:none}
+#projectModal .modal-content{transition:transform .4s ease,opacity .4s ease}
+#projectModal.hidden .modal-content{transform:translateY(30px) scale(.97);opacity:0}
+#projectModal:not(.hidden) .modal-content{transform:translateY(0) scale(1);opacity:1}
+.marquee-track:hover .marquee{animation-play-state:paused}
+#backToTop{transition:opacity .3s ease,transform .3s ease}
+#backToTop.hidden{opacity:0;transform:translateY(20px);pointer-events:none}
+.status-dot{position:relative}
+.status-dot::before{content:'';position:absolute;inset:-3px;border-radius:50%;background:#A3B18A;animation:pulse-ring 2.5s ease-out infinite}
+</style>
+</head>
+<body class="texture-overlay">
+<div id="preloader">
+<div class="loader-text"><span style="animation-delay:.1s">E</span><span style="animation-delay:.15s">y</span><span style="animation-delay:.2s">a</span><span style="animation-delay:.25s">d</span><span style="animation-delay:.35s">&nbsp;</span><span style="animation-delay:.4s">S</span><span style="animation-delay:.45s">h</span><span style="animation-delay:.5s">a</span><span style="animation-delay:.55s">w</span><span style="animation-delay:.6s">k</span><span style="animation-delay:.65s">y</span></div>
+<div class="loader-bar"><div class="loader-bar-inner"></div></div>
+</div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div id="toastContainer" class="fixed top-6 right-6 z-[100] flex flex-col gap-3"></div>
+<button id="backToTop" class="hidden fixed bottom-8 right-8 z-50 w-11 h-11 rounded-full bg-white border border-sand/60 shadow-lg shadow-charcoal/5 flex items-center justify-center hover:bg-terra hover:border-terra hover:text-cream text-charcoal/60 transition-all duration-300 group"><span class="iconify group-hover:-translate-y-0.5 transition-transform" data-icon="lucide:arrow-up" data-width="16"></span></button>
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 nav-glass border-b border-sand/50 transition-all duration-300">
+<div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+<a href="#hero" class="font-serif text-2xl font-semibold text-charcoal tracking-tight cursor-hover">ES<span class="text-terra">.</span></a>
+<div class="hidden md:flex items-center gap-8">
+<a href="#about" class="nav-link cursor-hover text-xs font-medium tracking-widest uppercase text-charcoal/60 hover:text-terra transition-colors duration-300" data-section="about">About</a>
+<a href="#skills" class="nav-link cursor-hover text-xs font-medium tracking-widest uppercase text-charcoal/60 hover:text-terra transition-colors duration-300" data-section="skills">Skills</a>
+<a href="#projects" class="nav-link cursor-hover text-xs font-medium tracking-widest uppercase text-charcoal/60 hover:text-terra transition-colors duration-300" data-section="projects">Projects</a>
+<a href="#awards" class="nav-link cursor-hover text-xs font-medium tracking-widest uppercase text-charcoal/60 hover:text-terra transition-colors duration-300" data-section="awards">Awards</a>
+<a href="#timeline" class="nav-link cursor-hover text-xs font-medium tracking-widest uppercase text-charcoal/60 hover:text-terra transition-colors duration-300" data-section="timeline">Journey</a>
+<a href="#contact" class="nav-link cursor-hover text-xs font-medium tracking-widest uppercase text-charcoal/60 hover:text-terra transition-colors duration-300" data-section="contact">Contact</a>
+</div>
+<div class="hidden md:flex items-center gap-4">
+<a href="#contact" class="btn-glow cursor-hover bg-charcoal text-cream px-5 py-2 rounded-full text-[10px] font-semibold tracking-widest uppercase hover:bg-terra transition-colors duration-300">Let's Talk</a>
+</div>
+<button id="mobileMenuBtn" class="md:hidden text-charcoal/70 hover:text-terra transition-colors"><span class="iconify" data-icon="lucide:menu" data-width="22"></span></button>
+</div>
+<div id="mobileMenu" class="md:hidden hidden border-t border-sand/50 bg-cream/95 backdrop-blur-xl">
+<div class="px-6 py-4 flex flex-col gap-3">
+<a href="#about" class="mobile-link text-sm font-medium text-charcoal/70 hover:text-terra py-2 transition-colors">About</a>
+<a href="#skills" class="mobile-link text-sm font-medium text-charcoal/70 hover:text-terra py-2 transition-colors">Skills</a>
+<a href="#projects" class="mobile-link text-sm font-medium text-charcoal/70 hover:text-terra py-2 transition-colors">Projects</a>
+<a href="#awards" class="mobile-link text-sm font-medium text-charcoal/70 hover:text-terra py-2 transition-colors">Awards</a>
+<a href="#timeline" class="mobile-link text-sm font-medium text-charcoal/70 hover:text-terra py-2 transition-colors">Journey</a>
+<a href="#contact" class="mobile-link text-sm font-medium text-charcoal/70 hover:text-terra py-2 transition-colors">Contact</a>
+<a href="#contact" class="mt-2 text-center bg-charcoal text-cream py-2.5 rounded-full text-xs font-semibold tracking-widest uppercase">Let's Talk</a>
+</div>
+</div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="relative min-h-screen flex items-center overflow-hidden">
+<div class="absolute inset-0 pointer-events-none">
+<div class="sunbeam absolute top-0 right-1/4 w-96 h-full bg-gradient-to-b from-terra/5 via-terra/3 to-transparent skew-x-[-8deg]"></div>
+<div class="sunbeam absolute top-0 right-1/3 w-64 h-full bg-gradient-to-b from-sand/10 via-sand/5 to-transparent skew-x-[-12deg]" style="animation-delay:2s"></div>
+<div class="absolute top-20 right-10 w-72 h-72 bg-terra/5 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-20 left-10 w-96 h-96 bg-sage/5 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-0 left-8 opacity-20 plant-sway"><span class="iconify text-sage" data-icon="lucide:flower-2" data-width="80"></span></div>
+<div class="absolute top-32 right-16 opacity-10 float" style="animation-delay:1s"><span class="iconify text-pink" data-icon="lucide:leaf" data-width="40"></span></div>
+</div>
+<div class="max-w-6xl mx-auto px-6 w-full pt-24 pb-16 md:pt-32 md:pb-24">
+<div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+<div class="order-2 md:order-1">
+<div class="fade-up fd1 inline-flex items-center gap-2.5 bg-white/60 backdrop-blur-sm border border-sand/50 rounded-full px-4 py-2 mb-8"><span class="status-dot w-2 h-2 bg-sage rounded-full relative z-10"></span><span class="text-[11px] font-medium text-charcoal/60">Available for opportunities</span></div>
+<h1 class="fade-up fd2 font-serif text-4xl md:text-5xl lg:text-[3.5rem] font-semibold text-charcoal leading-[1.08] tracking-tight mb-6">Eyad Shawky<span class="text-terra"> —</span><br><span class="text-charcoal/75">Building Games,</span><br><span class="text-charcoal/75">Securing Systems,</span><br><span class="text-sage">Creating the Future.</span></h1>
+<p class="fade-up fd3 text-base md:text-lg font-light text-charcoal/55 leading-relaxed max-w-lg mb-10">A young programmer from Egypt, passionate about game development, web technologies, and cybersecurity. Turning ideas into real, working software.</p>
+<div class="fade-up fd4 flex flex-wrap gap-4">
+<a href="#projects" class="btn-glow cursor-hover inline-flex items-center gap-2.5 bg-charcoal text-cream px-7 py-3.5 rounded-full text-xs font-semibold tracking-widest uppercase hover:bg-terra transition-colors duration-300">View My Projects <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span></a>
+<a href="#contact" class="btn-glow cursor-hover inline-flex items-center gap-2.5 border border-charcoal/15 text-charcoal px-7 py-3.5 rounded-full text-xs font-semibold tracking-widest uppercase hover:border-terra hover:text-terra transition-all duration-300">Contact Me</a>
+</div>
+<div class="fade-up fd5 flex items-center gap-6 mt-12 pt-8 border-t border-sand/40">
+<div class="flex items-center gap-2"><span class="iconify text-terra" data-icon="lucide:trophy" data-width="14"></span><span class="text-xs text-charcoal/45">3rd Nationwide</span></div>
+<div class="w-px h-4 bg-sand"></div>
+<div class="flex items-center gap-2"><span class="iconify text-sage" data-icon="lucide:graduation-cap" data-width="14"></span><span class="text-xs text-charcoal/45">DEBI Graduate</span></div>
+<div class="w-px h-4 bg-sand"></div>
+<div class="flex items-center gap-2"><span class="iconify text-pink" data-icon="lucide:shield-check" data-width="14"></span><span class="text-xs text-charcoal/45">Bug Bounty</span></div>
+</div>
+</div>
+<div class="order-1 md:order-2 flex justify-center">
+<div class="relative">
+<div class="absolute -inset-4 bg-gradient-to-br from-sand via-pink/20 to-sage/20 rounded-[2rem] -z-10"></div>
+<div class="absolute -inset-2 border border-terra/10 rounded-[1.75rem] -z-10"></div>
+<div class="relative w-72 h-80 md:w-80 md:h-96 lg:w-96 lg:h-[28rem] rounded-[1.5rem] overflow-hidden shadow-2xl shadow-charcoal/8">
+<img src="https://z-cdn-media.chatglm.cn/files/d4046f3f-5465-429d-acb1-d368ac5b1b1d.png?auth_key=1882467246-5449778f1b5040fb947be185a862ce6d-0-74db9bffbf8593600606a272f4cf65c7" alt="Eyad Shawky" class="w-full h-full object-cover object-top hero-breathe">
+<div class="absolute inset-0 bg-gradient-to-t from-charcoal/10 via-transparent to-terra/5 pointer-events-none"></div>
+</div>
+<div class="absolute -bottom-4 -left-4 bg-white/90 backdrop-blur-md rounded-2xl px-4 py-3 shadow-lg shadow-charcoal/5 float" style="animation-delay:.5s"><p class="text-[10px] tracking-widest uppercase text-charcoal/50 mb-0.5">From</p><p class="text-sm font-semibold text-charcoal flex items-center gap-1.5"><span class="iconify text-terra" data-icon="lucide:map-pin" data-width="13"></span>Egypt 🇪🇬</p></div>
+<div class="absolute -top-3 -right-3 bg-white/90 backdrop-blur-md rounded-xl px-3 py-2 shadow-lg shadow-charcoal/5 float" style="animation-delay:1.5s"><p class="text-xs font-medium text-sage flex items-center gap-1"><span class="iconify" data-icon="lucide:shield-check" data-width="13"></span>Security</p></div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40"><span class="text-[10px] tracking-[0.3em] uppercase text-charcoal/50">Scroll</span><div class="w-px h-8 bg-gradient-to-b from-charcoal/30 to-transparent"></div></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="py-5 bg-sand/30 border-y border-sand/40 overflow-hidden marquee-track">
+<div class="flex whitespace-nowrap marquee" style="width:max-content">
+<span class="mx-8 text-xs tracking-[0.3em] uppercase text-charcoal/25 font-medium">Python</span><span class="mx-4 text-terra/30">✦</span><span class="mx-8 text-xs tracking-[0.3em] uppercase text-charcoal/25 font-medium">JavaScript</span><span class="mx-4 text-sage/30">✦</span><span class="mx-8 text-xs tracking-[0.3em] uppercase text-charcoal/25 font-medium">Godot Engine</span><span class="mx-4 text-pink/30">✦</span><span class="mx-8 text-xs tracking-[0.3em] uppercase text-charcoal/25 font-medium">Rust</span><span class="mx-4 text-terra/30">✦</span><span class="mx-8 text-xs tracking-[0.3em] uppercase text-charcoal/25 font-medium">React</span><span class="mx-4 text-sage/30">✦</span><span class="mx-8 text-xs tracking-[0.3em] uppercase text-charcoal/25 font-medium">Cybersecurity</span><span class="mx-4 text-pink/30">✦</span><span class="mx-8 text-xs tracking-[0.3em] uppercase text-charcoal/25 font-medium">Linux</span><span class="mx-4 text-terra/30">✦</span><span class="mx-8 text-xs tracking-[0.3em] uppercase text-charcoal/25 font-medium">UI/UX Design</span><span class="mx-4 text-sage/30">✦</span><span class="mx-8 text-xs tracking-[0.3em] uppercase text-charcoal/25 font-medium">Tailwind CSS</span><span class="mx-4 text-pink/30">✦</span>
+<span class="mx-8 text-xs tracking-[0.3em] uppercase text-charcoal/25 font-medium">Python</span><span class="mx-4 text-terra/30">✦</span><span class="mx-8 text-xs tracking-[0.3em] uppercase text-charcoal/25 font-medium">JavaScript</span><span class="mx-4 text-sage/30">✦</span><span class="mx-8 text-xs tracking-[0.3em] uppercase text-charcoal/25 font-medium">Godot Engine</span><span class="mx-4 text-pink/30">✦</span><span class="mx-8 text-xs tracking-[0.3em] uppercase text-charcoal/25 font-medium">Rust</span><span class="mx-4 text-terra/30">✦</span><span class="mx-8 text-xs tracking-[0.3em] uppercase text-charcoal/25 font-medium">React</span><span class="mx-4 text-sage/30">✦</span><span class="mx-8 text-xs tracking-[0.3em] uppercase text-charcoal/25 font-medium">Cybersecurity</span><span class="mx-4 text-pink/30">✦</span><span class="mx-8 text-xs tracking-[0.3em] uppercase text-charcoal/25 font-medium">Linux</span><span class="mx-4 text-terra/30">✦</span><span class="mx-8 text-xs tracking-[0.3em] uppercase text-charcoal/25 font-medium">UI/UX Design</span><span class="mx-4 text-sage/30">✦</span><span class="mx-8 text-xs tracking-[0.3em] uppercase text-charcoal/25 font-medium">Tailwind CSS</span><span class="mx-4 text-pink/30">✦</span>
+</div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="py-24 md:py-32 relative">
+<div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sand to-transparent"></div>
+<div class="max-w-6xl mx-auto px-6">
+<div class="grid md:grid-cols-2 gap-16 items-center">
+<div class="reveal relative">
+<div class="relative rounded-[1.5rem] overflow-hidden aspect-[4/5] shadow-xl shadow-charcoal/5">
+<img src="https://z-cdn-media.chatglm.cn/files/016ce70a-ef73-4a10-8396-b215890abb63.png?auth_key=1882467246-e0c6b8f7772349e28dd7e384d58e0bf0-0-12649234410b744884e1b33439edec6e" alt="Eyad presenting at Digitopia" class="w-full h-full object-cover ken-burns">
+<div class="absolute inset-0 bg-gradient-to-t from-charcoal/20 via-transparent to-transparent pointer-events-none"></div>
+</div>
+<div class="absolute -bottom-6 -right-6 w-32 h-32 bg-sage/10 rounded-full blur-[40px]"></div>
+<div class="absolute -top-6 -left-6 w-24 h-24 bg-terra/10 rounded-full blur-[30px]"></div>
+</div>
+<div class="reveal" style="transition-delay:.15s">
+<p class="text-xs font-medium tracking-[0.25em] uppercase text-terra mb-4">About Me</p>
+<h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-charcoal leading-tight tracking-tight mb-8">A young mind<br><span class="text-charcoal/55">driven by curiosity</span></h2>
+<div class="space-y-5 text-charcoal/60 font-light leading-relaxed">
+<p>I'm Eyad Shawky, a young programmer and game developer from Egypt. My journey started with a simple fascination — how do the apps and games I love actually work? That question led me down a path of relentless learning and building.</p>
+<p>From developing Minecraft mods and servers since 2021, to building AI-powered logistics engines and competing nationally in software innovation, I've always believed that the best way to learn is to create.</p>
+<p>Today, I'm expanding into cybersecurity — learning to break things so I can build them better. I'm a graduate of Egypt's Digital Buds Initiative (DEBI), a bug bounty hunter, and someone who genuinely loves the craft of software.</p>
+</div>
+<div class="grid grid-cols-3 gap-6 mt-10 pt-8 border-t border-sand/60">
+<div><p class="font-serif text-3xl font-semibold text-terra counter" data-target="10">0</p><p class="text-[10px] tracking-widest uppercase text-charcoal/40 mt-1">Projects</p></div>
+<div><p class="font-serif text-3xl font-semibold text-sage counter" data-target="3">0</p><p class="text-[10px] tracking-widest uppercase text-charcoal/40 mt-1">Years Coding</p></div>
+<div><p class="font-serif text-3xl font-semibold text-pink">3rd</p><p class="text-[10px] tracking-widest uppercase text-charcoal/40 mt-1">Nationwide</p></div>
+</div>
+<div class="mt-8">
+<button onclick="showToast('Resume download will be available soon!','info')" class="btn-glow cursor-hover inline-flex items-center gap-2.5 border border-charcoal/12 text-charcoal/70 px-6 py-3 rounded-full text-xs font-semibold tracking-widest uppercase hover:border-terra hover:text-terra transition-all duration-300"><span class="iconify" data-icon="lucide:download" data-width="14"></span>Download Resume</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="py-24 md:py-32 relative bg-sand/20">
+<div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sand to-transparent"></div>
+<div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sand to-transparent"></div>
+<div class="max-w-6xl mx-auto px-6">
+<div class="text-center mb-16 reveal">
+<p class="text-xs font-medium tracking-[0.25em] uppercase text-terra mb-4">What I Work With</p>
+<h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-charcoal tracking-tight">Skills & Technologies</h2>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+<div class="skill-card card-lift reveal cursor-hover bg-white/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 text-center border border-sand/40 cursor-default" style="transition-delay:.05s"><div class="skill-icon inline-flex mb-4 text-sage"><span class="iconify" data-icon="lucide:code-2" data-width="32"></span></div><h3 class="font-serif text-lg font-semibold text-charcoal mb-1">Python</h3><p class="text-xs text-charcoal/40">AI · Automation</p></div>
+<div class="skill-card card-lift reveal cursor-hover bg-white/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 text-center border border-sand/40 cursor-default" style="transition-delay:.1s"><div class="skill-icon inline-flex mb-4 text-terra"><span class="iconify" data-icon="lucide:file-code" data-width="32"></span></div><h3 class="font-serif text-lg font-semibold text-charcoal mb-1">HTML</h3><p class="text-xs text-charcoal/40">Structure · Semantics</p></div>
+<div class="skill-card card-lift reveal cursor-hover bg-white/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 text-center border border-sand/40 cursor-default" style="transition-delay:.15s"><div class="skill-icon inline-flex mb-4 text-pink"><span class="iconify" data-icon="lucide:palette" data-width="32"></span></div><h3 class="font-serif text-lg font-semibold text-charcoal mb-1">CSS</h3><p class="text-xs text-charcoal/40">Design · Animation</p></div>
+<div class="skill-card card-lift reveal cursor-hover bg-white/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 text-center border border-sand/40 cursor-default" style="transition-delay:.2s"><div class="skill-icon inline-flex mb-4 text-terra"><span class="iconify" data-icon="lucide:braces" data-width="32"></span></div><h3 class="font-serif text-lg font-semibold text-charcoal mb-1">JavaScript</h3><p class="text-xs text-charcoal/40">Interactivity · Logic</p></div>
+<div class="skill-card card-lift reveal cursor-hover bg-white/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 text-center border border-sand/40 cursor-default" style="transition-delay:.25s"><div class="skill-icon inline-flex mb-4 text-sage"><span class="iconify" data-icon="lucide:gamepad-2" data-width="32"></span></div><h3 class="font-serif text-lg font-semibold text-charcoal mb-1">Godot Engine</h3><p class="text-xs text-charcoal/40">2D · 3D Games</p></div>
+<div class="skill-card card-lift reveal cursor-hover bg-white/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 text-center border border-sand/40 cursor-default" style="transition-delay:.3s"><div class="skill-icon inline-flex mb-4 text-terra"><span class="iconify" data-icon="lucide:shield" data-width="32"></span></div><h3 class="font-serif text-lg font-semibold text-charcoal mb-1">Cybersecurity</h3><p class="text-xs text-charcoal/40">Pentesting · Audits</p></div>
+<div class="skill-card card-lift reveal cursor-hover bg-white/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 text-center border border-sand/40 cursor-default" style="transition-delay:.35s"><div class="skill-icon inline-flex mb-4 text-charcoal/50"><span class="iconify" data-icon="lucide:terminal" data-width="32"></span></div><h3 class="font-serif text-lg font-semibold text-charcoal mb-1">Linux</h3><p class="text-xs text-charcoal/40">Servers · CLI</p></div>
+<div class="skill-card card-lift reveal cursor-hover bg-white/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 text-center border border-sand/40 cursor-default" style="transition-delay:.4s"><div class="skill-icon inline-flex mb-4 text-pink"><span class="iconify" data-icon="lucide:figma" data-width="32"></span></div><h3 class="font-serif text-lg font-semibold text-charcoal mb-1">UI/UX Design</h3><p class="text-xs text-charcoal/40">Interface · Experience</p></div>
+</div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="py-24 md:py-32 relative">
+<div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sand to-transparent"></div>
+<div class="absolute top-32 right-0 w-96 h-96 bg-terra/3 rounded-full blur-[150px] pointer-events-none"></div>
+<div class="max-w-6xl mx-auto px-6">
+<div class="text-center mb-16 reveal">
+<p class="text-xs font-medium tracking-[0.25em] uppercase text-terra mb-4">Selected Work</p>
+<h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-charcoal tracking-tight">Projects I've Built</h2>
+<p class="text-sm text-charcoal/45 font-light mt-4 max-w-md mx-auto">Click any project to see more details</p>
+</div>
+<div class="grid md:grid-cols-2 gap-6 md:gap-8" id="projectsGrid"></div>
+</div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards" class="py-24 md:py-32 relative bg-sand/20">
+<div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sand to-transparent"></div>
+<div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sand to-transparent"></div>
+<div class="max-w-6xl mx-auto px-6">
+<div class="grid md:grid-cols-2 gap-16 items-start">
+<div class="reveal relative">
+<div class="relative rounded-[1.5rem] overflow-hidden aspect-[4/3] shadow-xl shadow-charcoal/5">
+<img src="https://z-cdn-media.chatglm.cn/files/94ceca2b-caf5-4435-bd7e-8beea5bcebf6.png?auth_key=1882467246-84dcb05599d64500a1526d957887abf7-0-ba934a4279e14176354836c173258621" alt="Eyad presenting at Digitopia" class="w-full h-full object-cover ken-burns" style="animation-delay:5s">
+<div class="absolute inset-0 bg-gradient-to-t from-charcoal/15 via-transparent to-transparent pointer-events-none"></div>
+</div>
+<div class="absolute -bottom-5 -right-5 bg-white rounded-2xl p-5 shadow-xl shadow-charcoal/10 border border-sand/40"><div class="text-center"><p class="font-serif text-3xl font-bold text-terra">3rd</p><p class="text-[10px] tracking-widest uppercase text-charcoal/40 mt-1">Nationwide</p></div></div>
+</div>
+<div>
+<div class="reveal mb-12">
+<p class="text-xs font-medium tracking-[0.25em] uppercase text-terra mb-4">Recognition</p>
+<h2 class="font-serif text-3xl md:text-4xl font-semibold text-charcoal tracking-tight leading-tight">Competitions<br>& Awards</h2>
+</div>
+<div class="space-y-6">
+<div class="reveal card-lift bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-sand/40 cursor-default" style="transition-delay:.1s"><div class="flex items-start gap-4"><div class="flex-shrink-0 w-10 h-10 rounded-xl bg-terra/10 flex items-center justify-center mt-0.5"><span class="iconify text-terra" data-icon="lucide:trophy" data-width="20"></span></div><div><h3 class="font-serif text-lg font-semibold text-charcoal mb-1">3rd Place Nationwide — Digitopia</h3><p class="text-sm text-charcoal/50 font-light leading-relaxed">Achieved third place across Egypt in the "Software and AI Solutions" track for an outstanding innovative project combining AI and practical problem-solving.</p></div></div></div>
+<div class="reveal card-lift bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-sand/40 cursor-default" style="transition-delay:.2s"><div class="flex items-start gap-4"><div class="flex-shrink-0 w-10 h-10 rounded-xl bg-sage/10 flex items-center justify-center mt-0.5"><span class="iconify text-sage" data-icon="lucide:graduation-cap" data-width="20"></span></div><div><h3 class="font-serif text-lg font-semibold text-charcoal mb-1">DEBI Graduation</h3><p class="text-sm text-charcoal/50 font-light leading-relaxed">Successfully completed and graduated from the "Digital Egypt Buds Initiative" (DEBI) preliminary training program in October 2024.</p></div></div></div>
+<div class="reveal card-lift bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-sand/40 cursor-default" style="transition-delay:.3s"><div class="flex items-start gap-4"><div class="flex-shrink-0 w-10 h-10 rounded-xl bg-pink/10 flex items-center justify-center mt-0.5"><span class="iconify text-pink" data-icon="lucide:shield-check" data-width="20"></span></div><div><h3 class="font-serif text-lg font-semibold text-charcoal mb-1">Security Audit — K2 on Sherlock</h3><p class="text-sm text-charcoal/50 font-light leading-relaxed">Competed in a high-profile security audit for the K2 project, submitting technical vulnerability reports for expert evaluation on Sherlock.</p></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CYBERSECURITY -->
+<section class="py-24 md:py-32 relative">
+<div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sand to-transparent"></div>
+<div class="max-w-6xl mx-auto px-6">
+<div class="reveal bg-gradient-to-br from-charcoal to-charcoal/90 rounded-[2rem] p-8 md:p-14 lg:p-16 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-80 h-80 bg-terra/10 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-sage/10 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="absolute inset-0 opacity-[0.03]" style="background-image:linear-gradient(rgba(255,255,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.1) 1px,transparent 1px);background-size:60px 60px"></div>
+<div class="relative z-10 grid md:grid-cols-2 gap-10 items-center">
+<div>
+<p class="text-xs font-medium tracking-[0.25em] uppercase text-terra mb-4">Cybersecurity</p>
+<h2 class="font-serif text-3xl md:text-4xl font-semibold text-cream leading-tight tracking-tight mb-6">Breaking things<br>to build them <span class="text-terra">better</span></h2>
+<p class="text-sm text-cream/45 font-light leading-relaxed mb-8">Active bug bounty hunter across major platforms. I believe understanding security is essential for every developer who wants to build trustworthy software.</p>
+<div class="flex flex-wrap gap-3">
+<span class="text-[11px] tracking-wider uppercase font-medium text-cream/60 border border-cream/12 px-3 py-1.5 rounded-full">HackerOne</span>
+<span class="text-[11px] tracking-wider uppercase font-medium text-cream/60 border border-cream/12 px-3 py-1.5 rounded-full">Bugcrowd</span>
+<span class="text-[11px] tracking-wider uppercase font-medium text-cream/60 border border-cream/12 px-3 py-1.5 rounded-full">Code4rena</span>
+<span class="text-[11px] tracking-wider uppercase font-medium text-cream/60 border border-cream/12 px-3 py-1.5 rounded-full">Immunefi</span>
+<span class="text-[11px] tracking-wider uppercase font-medium text-cream/60 border border-cream/12 px-3 py-1.5 rounded-full">Sherlock</span>
+</div>
+</div>
+<div class="flex justify-center">
+<div class="relative">
+<div class="w-40 h-40 md:w-52 md:h-52 rounded-full border border-cream/8 flex items-center justify-center">
+<div class="w-28 h-28 md:w-36 md:h-36 rounded-full border border-cream/8 flex items-center justify-center rotate-slow">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-terra/60 rounded-full"></div>
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-sage/60 rounded-full"></div>
+<div class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-2 h-2 bg-pink/60 rounded-full"></div>
+</div>
+<div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-terra/10 flex items-center justify-center"><span class="iconify text-terra" data-icon="lucide:shield" data-width="32"></span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CURRENTLY BUILDING -->
+<section class="py-20 md:py-24 relative bg-sand/15">
+<div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sand to-transparent"></div>
+<div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sand to-transparent"></div>
+<div class="max-w-4xl mx-auto px-6">
+<div class="reveal text-center">
+<p class="text-xs font-medium tracking-[0.25em] uppercase text-sage mb-4">Currently</p>
+<h2 class="font-serif text-2xl md:text-3xl font-semibold text-charcoal tracking-tight mb-4">What I'm Working On</h2>
+<div class="grid sm:grid-cols-3 gap-6 mt-10">
+<div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-sand/40"><span class="iconify text-terra mb-3" data-icon="lucide:brain" data-width="24"></span><h3 class="font-serif text-base font-semibold text-charcoal mb-1">AI Projects</h3><p class="text-xs text-charcoal/45 font-light">Exploring LLM integrations and intelligent systems</p></div>
+<div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-sand/40"><span class="iconify text-sage mb-3" data-icon="lucide:bug" data-width="24"></span><h3 class="font-serif text-base font-semibold text-charcoal mb-1">Bug Bounties</h3><p class="text-xs text-charcoal/45 font-light">Hunting vulnerabilities on major platforms</p></div>
+<div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-sand/40"><span class="iconify text-pink mb-3" data-icon="lucide:gamepad-2" data-width="24"></span><h3 class="font-serif text-base font-semibold text-charcoal mb-1">New Game</h3><p class="text-xs text-charcoal/45 font-light">Designing a new 2D experience in Godot</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline" class="py-24 md:py-32 relative">
+<div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sand to-transparent"></div>
+<div class="max-w-3xl mx-auto px-6">
+<div class="text-center mb-16 reveal">
+<p class="text-xs font-medium tracking-[0.25em] uppercase text-terra mb-4">My Journey</p>
+<h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-charcoal tracking-tight">Achievement Timeline</h2>
+</div>
+<div class="relative">
+<div class="absolute left-6 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 timeline-line"></div>
+<div class="reveal relative flex items-start gap-6 md:gap-0 mb-12"><div class="flex-shrink-0 w-12 h-12 rounded-full bg-cream border-2 border-sage flex items-center justify-center z-10 md:absolute md:left-1/2 md:-translate-x-1/2"><span class="iconify text-sage" data-icon="lucide:gamepad-2" data-width="18"></span></div><div class="md:w-1/2 md:pr-12 md:text-right"><p class="text-xs tracking-widest uppercase text-terra font-medium mb-1">2021</p><h3 class="font-serif text-xl font-semibold text-charcoal mb-1">Minecraft Modding Begins</h3><p class="text-sm text-charcoal/50 font-light">Started developing custom Minecraft mods and managing server infrastructure.</p></div></div>
+<div class="reveal relative flex items-start gap-6 md:gap-0 mb-12" style="transition-delay:.1s"><div class="flex-shrink-0 w-12 h-12 rounded-full bg-cream border-2 border-pink flex items-center justify-center z-10 md:absolute md:left-1/2 md:-translate-x-1/2"><span class="iconify text-pink" data-icon="lucide:rocket" data-width="18"></span></div><div class="md:w-1/2 md:ml-auto md:pl-12"><p class="text-xs tracking-widest uppercase text-terra font-medium mb-1">2023</p><h3 class="font-serif text-xl font-semibold text-charcoal mb-1">Built & Monetized "Land"</h3><p class="text-sm text-charcoal/50 font-light">Developed a land-based game and successfully monetized it — first real product shipped.</p></div></div>
+<div class="reveal relative flex items-start gap-6 md:gap-0 mb-12" style="transition-delay:.2s"><div class="flex-shrink-0 w-12 h-12 rounded-full bg-cream border-2 border-sage flex items-center justify-center z-10 md:absolute md:left-1/2 md:-translate-x-1/2"><span class="iconify text-sage" data-icon="lucide:graduation-cap" data-width="18"></span></div><div class="md:w-1/2 md:pr-12 md:text-right"><p class="text-xs tracking-widest uppercase text-terra font-medium mb-1">2024</p><h3 class="font-serif text-xl font-semibold text-charcoal mb-1">Accepted into Egypt Digital Cubs</h3><p class="text-sm text-charcoal/50 font-light">Selected for the prestigious Digital Egypt Buds Initiative (DEBI), graduating in October 2024.</p></div></div>
+<div class="reveal relative flex items-start gap-6 md:gap-0 mb-12" style="transition-delay:.3s"><div class="flex-shrink-0 w-12 h-12 rounded-full bg-cream border-2 border-terra flex items-center justify-center z-10 md:absolute md:left-1/2 md:-translate-x-1/2"><span class="iconify text-terra" data-icon="lucide:trophy" data-width="18"></span></div><div class="md:w-1/2 md:ml-auto md:pl-12"><p class="text-xs tracking-widest uppercase text-terra font-medium mb-1">2024</p><h3 class="font-serif text-xl font-semibold text-charcoal mb-1">3rd Place — Digitopia Nationwide</h3><p class="text-sm text-charcoal/50 font-light">Won 3rd place across Egypt in the "Software and AI Solutions" track.</p></div></div>
+<div class="reveal relative flex items-start gap-6 md:gap-0 mb-12" style="transition-delay:.4s"><div class="flex-shrink-0 w-12 h-12 rounded-full bg-cream border-2 border-pink flex items-center justify-center z-10 md:absolute md:left-1/2 md:-translate-x-1/2"><span class="iconify text-pink" data-icon="lucide:shield" data-width="18"></span></div><div class="md:w-1/2 md:pr-12 md:text-right"><p class="text-xs tracking-widest uppercase text-terra font-medium mb-1">2024</p><h3 class="font-serif text-xl font-semibold text-charcoal mb-1">Cybersecurity Training</h3><p class="text-sm text-charcoal/50 font-light">Began active bug bounty hunting and security research across HackerOne, Bugcrowd, Code4rena, and Immunefi.</p></div></div>
+<div class="reveal relative flex items-start gap-6 md:gap-0" style="transition-delay:.5s"><div class="flex-shrink-0 w-12 h-12 rounded-full bg-cream border-2 border-sage flex items-center justify-center z-10 md:absolute md:left-1/2 md:-translate-x-1/2"><span class="iconify text-sage" data-icon="lucide:sparkles" data-width="18"></span></div><div class="md:w-1/2 md:ml-auto md:pl-12"><p class="text-xs tracking-widest uppercase text-terra font-medium mb-1">2024 — Now</p><h3 class="font-serif text-xl font-semibold text-charcoal mb-1">AI & Enterprise Projects</h3><p class="text-sm text-charcoal/50 font-light">Developed Saudi Smart Engine V2 for Aramex, NileMind AI, Ghost Node ERP in Rust, and multiple web platforms.</p></div></div>
+</div>
+</div>
+</section>
+
+<!-- SOCIAL LINKS -->
+<section class="py-24 md:py-32 relative bg-sand/20">
+<div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sand to-transparent"></div>
+<div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sand to-transparent"></div>
+<div class="max-w-4xl mx-auto px-6 text-center">
+<div class="reveal">
+<p class="text-xs font-medium tracking-[0.25em] uppercase text-terra mb-4">Connect</p>
+<h2 class="font-serif text-3xl md:text-4xl font-semibold text-charcoal tracking-tight mb-4">Find Me Online</h2>
+<p class="text-sm text-charcoal/45 font-light mb-12 max-w-md mx-auto">I'm always open to collaboration, interesting projects, and conversations about technology.</p>
+</div>
+<div class="reveal grid grid-cols-2 md:grid-cols-4 gap-4" style="transition-delay:.1s">
+<a href="https://github.com/eyadshawky2233" target="_blank" rel="noopener noreferrer" class="btn-glow card-lift cursor-hover bg-white/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-sand/40 flex flex-col items-center gap-3 group"><span class="iconify text-charcoal/40 group-hover:text-charcoal transition-colors duration-300" data-icon="lucide:github" data-width="28"></span><span class="text-xs font-medium tracking-widest uppercase text-charcoal/50 group-hover:text-charcoal transition-colors">GitHub</span></a>
+<a href="https://www.linkedin.com/in/eyad-shawky-9675503a8/" target="_blank" rel="noopener noreferrer" class="btn-glow card-lift cursor-hover bg-white/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-sand/40 flex flex-col items-center gap-3 group"><span class="iconify text-charcoal/40 group-hover:text-terra transition-colors duration-300" data-icon="lucide:linkedin" data-width="28"></span><span class="text-xs font-medium tracking-widest uppercase text-charcoal/50 group-hover:text-charcoal transition-colors">LinkedIn</span></a>
+<a href="mailto:eyadshawky81@gmail.com" class="btn-glow card-lift cursor-hover bg-white/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-sand/40 flex flex-col items-center gap-3 group"><span class="iconify text-charcoal/40 group-hover:text-sage transition-colors duration-300" data-icon="lucide:mail" data-width="28"></span><span class="text-xs font-medium tracking-widest uppercase text-charcoal/50 group-hover:text-charcoal transition-colors">Email</span></a>
+<a href="https://www.instagram.com/eyo_tox/" target="_blank" rel="noopener noreferrer" class="btn-glow card-lift cursor-hover bg-white/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-sand/40 flex flex-col items-center gap-3 group"><span class="iconify text-charcoal/40 group-hover:text-pink transition-colors duration-300" data-icon="lucide:instagram" data-width="28"></span><span class="text-xs font-medium tracking-widest uppercase text-charcoal/50 group-hover:text-charcoal transition-colors">Instagram</span></a>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-24 md:py-32 relative">
+<div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sand to-transparent"></div>
+<div class="absolute top-20 left-10 w-64 h-64 bg-sage/5 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="absolute bottom-20 right-10 w-80 h-80 bg-terra/5 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="max-w-2xl mx-auto px-6">
+<div class="text-center mb-12 reveal">
+<p class="text-xs font-medium tracking-[0.25em] uppercase text-terra mb-4">Get In Touch</p>
+<h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-charcoal tracking-tight mb-4">Let's Work Together</h2>
+<p class="text-sm text-charcoal/45 font-light">Have a project in mind? Want to collaborate? Or just say hello?</p>
+</div>
+<form id="contactForm" class="reveal space-y-5" style="transition-delay:.1s">
+<div class="grid md:grid-cols-2 gap-5">
+<div><label class="block text-xs font-medium tracking-widest uppercase text-charcoal/40 mb-2">Name</label><input type="text" name="name" required placeholder="Your name" class="form-input w-full px-4 py-3.5 rounded-xl text-sm text-charcoal placeholder:text-charcoal/25 font-light"></div>
+<div><label class="block text-xs font-medium tracking-widest uppercase text-charcoal/40 mb-2">Email</label><input type="email" name="email" required placeholder="you@email.com" class="form-input w-full px-4 py-3.5 rounded-xl text-sm text-charcoal placeholder:text-charcoal/25 font-light"></div>
+</div>
+<div><label class="block text-xs font-medium tracking-widest uppercase text-charcoal/40 mb-2">Subject</label><input type="text" name="subject" placeholder="What's this about?" class="form-input w-full px-4 py-3.5 rounded-xl text-sm text-charcoal placeholder:text-charcoal/25 font-light"></div>
+<div><label class="block text-xs font-medium tracking-widest uppercase text-charcoal/40 mb-2">Message</label><textarea name="message" required rows="5" placeholder="Tell me about your project or idea..." class="form-input w-full px-4 py-3.5 rounded-xl text-sm text-charcoal placeholder:text-charcoal/25 font-light resize-none"></textarea></div>
+<button type="submit" class="btn-glow cursor-hover w-full bg-charcoal text-cream py-4 rounded-xl text-xs font-semibold tracking-widest uppercase hover:bg-terra transition-colors duration-300 flex items-center justify-center gap-2">Send Message <span class="iconify" data-icon="lucide:send" data-width="14"></span></button>
+</form>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-12 border-t border-sand/40">
+<div class="max-w-6xl mx-auto px-6">
+<div class="flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-3"><span class="font-serif text-xl font-semibold text-charcoal">ES<span class="text-terra">.</span></span><span class="text-xs text-charcoal/25">·</span><span class="text-xs text-charcoal/35 font-light">Eyad Shawky</span></div>
+<p class="text-xs text-charcoal/30 font-light">Designed with intention. Built with passion. © 2025</p>
+<div class="flex items-center gap-4">
+<a href="https://github.com/eyadshawky2233" target="_blank" rel="noopener noreferrer" class="text-charcoal/25 hover:text-terra transition-colors duration-300 cursor-hover"><span class="iconify" data-icon="lucide:github" data-width="16"></span></a>
+<a href="https://www.linkedin.com/in/eyad-shawky-9675503a8/" target="_blank" rel="noopener noreferrer" class="text-charcoal/25 hover:text-terra transition-colors duration-300 cursor-hover"><span class="iconify" data-icon="lucide:linkedin" data-width="16"></span></a>
+<a href="mailto:eyadshawky81@gmail.com" class="text-charcoal/25 hover:text-terra transition-colors duration-300 cursor-hover"><span class="iconify" data-icon="lucide:mail" data-width="16"></span></a>
+<a href="https://www.instagram.com/eyo_tox/" target="_blank" rel="noopener noreferrer" class="text-charcoal/25 hover:text-terra transition-colors duration-300 cursor-hover"><span class="iconify" data-icon="lucide:instagram" data-width="16"></span></a>
+</div>
+</div>
+</div>
+</footer>
+
+<!-- PROJECT MODAL -->
+<div id="projectModal" class="hidden fixed inset-0 z-[90] flex items-center justify-center p-4">
+<div class="absolute inset-0 bg-charcoal/40 backdrop-blur-sm" id="modalOverlay"></div>
+<div class="modal-content relative bg-cream rounded-[2rem] max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-2xl shadow-charcoal/20 border border-sand/40">
+<button id="modalClose" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-white/80 border border-sand/40 flex items-center justify-center text-charcoal/50 hover:text-terra hover:border-terra transition-all duration-300 z-10 cursor-hover"><span class="iconify" data-icon="lucide:x" data-width="16"></span></button>
+<div id="modalImage" class="aspect-video bg-sand/30 rounded-t-[2rem] overflow-hidden"></div>
+<div class="p-8 md:p-10">
+<div id="modalTags" class="flex items-center gap-2 mb-4"></div>
+<h3 id="modalTitle" class="font-serif text-2xl md:text-3xl font-semibold text-charcoal mb-4"></h3>
+<p id="modalDesc" class="text-sm text-charcoal/55 font-light leading-relaxed mb-6"></p>
+<div id="modalDetails" class="bg-sand/20 rounded-xl p-5 mb-6"></div>
+<div id="modalTech" class="flex flex-wrap gap-2"></div>
+</div>
+</div>
+</div>
+
+<script>
+const projects=[
+{id:'saudi-smart-engine',title:'Saudi Smart Engine V2',short:'An AI-driven logistics routing optimization engine for Aramex KSA, automating fleet management and maximizing last-mile network efficiency.',full:'Developed and finalized as part of the JAHIZ initiative for Aramex in Saudi Arabia. This engine uses AI to optimize delivery routes, manage fleet allocation in real-time, and significantly reduce last-mile delivery costs. The system processes thousands of delivery points and generates optimal routes considering traffic, capacity, and time windows.',tags:[{label:'AI',color:'terra'},{label:'Logistics',color:'sage'}],icon:'lucide:route',gradient:'from-terra/10 via-sand/30 to-sage/10',details:[{label:'Client',value:'Aramex KSA'},{label:'Initiative',value:'JAHIZ'},{label:'Type',value:'Enterprise AI'},{label:'Status',value:'Finalized'}],tech:['Python','AI/ML','Routing Algorithms','Data Processing','API Integration']},
+{id:'nilemind-ai',title:'NileMind AI',short:'An educational intelligence platform tailored to support and integrate with the Egyptian academic curriculum.',full:'NileMind AI is an educational platform designed specifically for the Egyptian education system. It leverages AI to provide personalized learning experiences, adaptive testing, and curriculum-aligned content. The platform aims to make quality education more accessible and effective for students across Egypt.',tags:[{label:'AI',color:'terra'},{label:'Education',color:'pink'}],icon:'lucide:brain',gradient:'from-sage/10 via-cream to-pink/10',details:[{label:'Domain',value:'EdTech'},{label:'Market',value:'Egypt'},{label:'Type',value:'AI Platform'},{label:'Status',value:'In Development'}],tech:['Python','NLP','Web Technologies','Egyptian Curriculum','Adaptive Learning']},
+{id:'ghost-node-erp',title:'Ghost Node ERP',short:'A decentralized encryption and routing system focused on high-speed performance and maximum privacy, built in Rust.',full:'Ghost Node is a decentralized ERP system that prioritizes security and performance. Built entirely in Rust, it features end-to-end encryption, decentralized node routing, and zero-knowledge proof capabilities. Designed for organizations requiring maximum data privacy without sacrificing speed.',tags:[{label:'Rust',color:'charcoal'},{label:'Security',color:'sage'}],icon:'lucide:lock',gradient:'from-charcoal/5 via-sand/20 to-terra/5',details:[{label:'Language',value:'Rust'},{label:'Architecture',value:'Decentralized'},{label:'Focus',value:'Privacy & Speed'},{label:'Status',value:'Active Dev'}],tech:['Rust','Cryptography','P2P Networking','Zero-Knowledge Proofs','Encryption']},
+{id:'mugu-clothes',title:'MUGU Clothes',short:'A live e-commerce platform built with React, Vite, and Tailwind CSS with clean design and fast performance.',full:'MUGU Clothes is a fully deployed e-commerce demo showcasing modern web development practices. Built with React and Vite for blazing-fast performance, styled with Tailwind CSS. Features include product browsing, cart management, responsive layouts, and optimized loading.',tags:[{label:'React',color:'terra'},{label:'E-Commerce',color:'sage'}],icon:'lucide:shopping-bag',gradient:'from-pink/10 via-sand/20 to-terra/10',details:[{label:'Stack',value:'React + Vite'},{label:'Styling',value:'Tailwind CSS'},{label:'Type',value:'E-Commerce'},{label:'Status',value:'Live Demo'}],tech:['React','Vite','Tailwind CSS','Responsive Design','Performance Optimization']},
+{id:'land-game',title:'Land',short:'A land-based game built and monetized — turning creative game ideas into real, shipped products.',full:'Land is a game project that represents a significant milestone — it was not just built, but successfully monetized. This project proved the ability to take a game from concept to market, handling everything from game design and development to deployment and monetization strategy.',tags:[{label:'Godot',color:'sage'},{label:'Monetized',color:'terra'}],icon:'lucide:map',gradient:'from-sage/15 via-cream to-terra/10',details:[{label:'Engine',value:'Godot'},{label:'Genre',value:'Land Simulation'},{label:'Milestone',value:'First Monetized Game'},{label:'Status',value:'Shipped'}],tech:['Godot Engine','Game Design','Monetization','Deployment','Player Management']},
+{id:'minecraft-mods',title:'Minecraft Mods & Servers',short:'Custom Minecraft mod development and server infrastructure management with advanced configurations since 2021.',full:'Over 3+ years of continuous Minecraft modding and server development. Includes creating custom game mechanics, building server infrastructure from scratch, managing player communities, and implementing advanced configurations. This early experience laid the foundation for understanding code architecture and debugging.',tags:[{label:'Java',color:'terra'},{label:'Since 2021',color:'sage'}],icon:'lucide:blocks',gradient:'from-terra/10 via-sand/30 to-sage/15',details:[{label:'Language',value:'Java'},{label:'Duration',value:'3+ Years'},{label:'Scope',value:'Mods + Servers'},{label:'Status',value:'Ongoing'}],tech:['Java','Minecraft API','Server Administration','Plugin Development','Community Management']}
+];
+const pg=document.getElementById('projectsGrid');
+const tcm={terra:'bg-terra/10 text-terra',sage:'bg-sage/10 text-sage',pink:'bg-pink/10 text-pink',charcoal:'bg-charcoal/5 text-charcoal/50'};
+projects.forEach((p,i)=>{pg.innerHTML+=`<div class="card-lift reveal group bg-white/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-sand/40 cursor-pointer project-card" data-index="${i}" style="transition-delay:${.05+i*.05}s"><div class="aspect-video bg-gradient-to-br ${p.gradient} relative overflow-hidden"><div class="absolute inset-0 flex items-center justify-center"><span class="iconify text-charcoal/15 group-hover:text-charcoal/30 transition-colors duration-500" data-icon="${p.icon}" data-width="64"></span></div><div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/5 transition-colors duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100"><span class="bg-white/90 backdrop-blur-sm text-charcoal text-[10px] font-semibold tracking-widest uppercase px-4 py-2 rounded-full shadow-lg">View Details</span></div></div><div class="p-6 md:p-8"><div class="flex items-center gap-2 mb-3">${p.tags.map(t=>`<span class="text-[10px] tracking-widest uppercase font-medium ${tcm[t.color]} px-2.5 py-1 rounded-full">${t.label}</span>`).join('')}</div><h3 class="font-serif text-xl md:text-2xl font-semibold text-charcoal mb-2">${p.title}</h3><p class="text-sm text-charcoal/50 font-light leading-relaxed">${p.short}</p></div></div>`});
+const modal=document.getElementById('projectModal');
+function openModal(i){const p=projects[i];document.getElementById('modalImage').innerHTML=`<div class="w-full h-full bg-gradient-to-br ${p.gradient} flex items-center justify-center"><span class="iconify text-charcoal/15" data-icon="${p.icon}" data-width="80"></span></div>`;document.getElementById('modalTags').innerHTML=p.tags.map(t=>`<span class="text-[10px] tracking-widest uppercase font-medium ${tcm[t.color]} px-2.5 py-1 rounded-full">${t.label}</span>`).join('');document.getElementById('modalTitle').textContent=p.title;document.getElementById('modalDesc').textContent=p.full;document.getElementById('modalDetails').innerHTML=`<div class="grid grid-cols-2 gap-4">${p.details.map(d=>`<div><p class="text-[10px] tracking-widest uppercase text-charcoal/35 mb-1">${d.label}</p><p class="text-sm font-medium text-charcoal">${d.value}</p></div>`).join('')}</div>`;document.getElementById('modalTech').innerHTML=p.tech.map(t=>`<span class="text-[11px] tracking-wider font-medium text-charcoal/50 border border-sand/60 px-3 py-1.5 rounded-full">${t}</span>`).join('');modal.classList.remove('hidden');document.body.style.overflow='hidden'}
+function closeModal(){modal.classList.add('hidden');document.body.style.overflow=''}
+document.querySelectorAll('.project-card').forEach(c=>c.addEventListener('click',()=>openModal(parseInt(c.dataset.index))));
+document.getElementById('modalOverlay').addEventListener('click',closeModal);
+document.getElementById('modalClose').addEventListener('click',closeModal);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('preloader').classList.add('hidden'),2200)});
+const dot=document.getElementById('cursorDot'),ring=document.getElementById('cursorRing');let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+!function ar(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ar)}();
+document.querySelectorAll('a,button,.cursor-hover,.project-card').forEach(el=>{el.addEventListener('mouseenter',()=>{dot.classList.add('hovering');ring.classList.add('hovering')});el.addEventListener('mouseleave',()=>{dot.classList.remove('hovering');ring.classList.remove('hovering')})});
+const ro=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+const co=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){const el=x.target,t=parseInt(el.dataset.target);let c=0;const inc=t/40;const timer=setInterval(()=>{c+=inc;if(c>=t){c=t;clearInterval(timer)}el.textContent=Math.floor(c)+'+'},40);co.unobserve(el)}})},{threshold:.5});
+document.querySelectorAll('.counter').forEach(el=>co.observe(el));
+const secs=document.querySelectorAll('section[id]'),nls=document.querySelectorAll('.nav-link[data-section]');
+const no=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){nls.forEach(l=>l.classList.remove('active'));const ln=document.querySelector(`.nav-link[data-section="${x.target.id}"]`);if(ln)ln.classList.add('active')}})},{threshold:.3,rootMargin:'-80px 0px -40% 0px'});
+secs.forEach(s=>no.observe(s));
+const mmb=document.getElementById('mobileMenuBtn'),mm=document.getElementById('mobileMenu');let mo=false;
+mmb.addEventListener('click',()=>{mo=!mo;mm.classList.toggle('hidden',!mo);mmb.innerHTML=mo?'<span class="iconify" data-icon="lucide:x" data-width="22"></span>':'<span class="iconify" data-icon="lucide:menu" data-width="22"></span>'});
+document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{mo=false;mm.classList.add('hidden');mmb.innerHTML='<span class="iconify" data-icon="lucide:menu" data-width="22"></span>'}));
+window.addEventListener('scroll',()=>{document.getElementById('navbar').style.boxShadow=window.pageYOffset>100?'0 4px 30px rgba(43,43,43,.05)':'none'});
+const btt=document.getElementById('backToTop');
+window.addEventListener('scroll',()=>{btt.classList.toggle('hidden',window.pageYOffset<600)});
+btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+function showToast(m,t='success'){const c=document.getElementById('toastContainer'),ts=document.createElement('div');const cl={success:'bg-sage',error:'bg-terra',info:'bg-charcoal'};const ic={success:'lucide:check-circle',error:'lucide:alert-circle',info:'lucide:info'};ts.className=`toast-in flex items-center gap-3 ${cl[t]} text-cream px-5 py-3.5 rounded-xl shadow-xl text-sm font-medium`;ts.innerHTML=`<span class="iconify" data-icon="${ic[t]}" data-width="18"></span>${m}`;c.appendChild(ts);setTimeout(()=>{ts.classList.replace('toast-in','toast-out');setTimeout(()=>ts.remove(),400)},3500)}
+document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();const n=new FormData(this).get('name');showToast(`Thanks ${n}! Your message has been sent.`,'success');this.reset()});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+</script>
+</body>
+</html>
